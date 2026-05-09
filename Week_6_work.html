@@ -11,12 +11,19 @@
         body{
             background-color: rgb(34, 13, 4);
             font-family: monospace;
-            color:rgb(234, 132, 42);
+            color:rgb(235, 116, 165);
             cursor: url(cursor/CrosshairPrecisionBlue.cur) 24 24, auto;
             text-shadow: 
-                0 0 5px rgb(241, 123, 38); 
+                0 0 5px rgb(235, 116, 165); 
+            font-size: large;
         }
 
+        /* ── CENTERED CONTAINER ── */
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;          /* centres the block horizontally */
+        }
 
         h1{
             font-size:4em;
@@ -27,16 +34,40 @@
         
         /* style for arduino pics */
         .arduino-gallery {
-            column-count: 5;
-            column-gap: 5rem;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+
+        .arduino-gallery img {
+            width: 90%;
+            height: auto;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .arduino-gallery img:hover {
+            animation: bounce 0.2s ease;
+
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0px);
             }
-        .arduino-gallery > * {
-            width: 80%;
-            max-width: 60%;
-            max-height: 40%;
-            margin-bottom: 1rem;
-            break-inside:auto;
+
+            50% {
+                transform: translateY(-10px);
             }
+        }
+        
+        .arduino-gallery-img:nth-child(odd) img {
+            animation-delay: 0.2s;
+        }
+
+        .arduino-gallery-img:nth-child(3n) img {
+            animation-delay: 0.4s;
+        }
+
         .W6-overview-arduino {
             display: flex;
             justify-content: center;
@@ -45,7 +76,7 @@
         .W6-overview-arduino img {
             max-width: 60%;
             height: auto;
-            transform: rotate(-90deg);  
+             
         }
         .W6-arduino-2 {
             display: flex;
@@ -58,84 +89,92 @@
             transform: rotate(90deg);  
         }
 
-        /* style for 12-hour pics */
     </style>
 </head>
 <body>
-    <h1>Week 6</h1>
-    <p>Content for Week 6 goes here.</p>
-    <br>
-    <h2>Overview of Arduino Parts</h2>
+
+    <!-- ── EVERYTHING LIVES INSIDE .container ── -->
+    <div class="container">
+
+        <h1>Week 6</h1>
+        <p>Content for Week 6 goes here.</p>
+        <br>
+
+        <h2>Overview of Arduino Parts</h2>
         <p>Here is an overview of the different parts of an Arduino, which I created using Tinkercad.</p>
-    <div class="overall-pictures">
-        <div class="W6-overview-arduino">
-            <div class="W6-overview-arduino img">
-                <img src="Images-Ass2/(W6)named-arduino-parts.jpeg" alt="Week 6 Image Arduino Parts">
+        <br>
+        <br>
+        <div class="overall-pictures">
+            <!--
+            <div class="W6-overview-arduino">
+                <div class="W6-overview-arduino img">
+                    <img src="Images-Ass2/(W6)named-arduino-parts.jpeg" alt="Week 6 Image Arduino Parts">
+                </div>
             </div>
         </div>
-    </div>
-<!-- edited pink arduino parts-->
-    <div class="arduino-gallery">
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/arduino-board.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/breadboard.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/Integrated-circuit.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/Joystick.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/LED-light.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/PIR-sensor.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/Push-button.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/Resistor.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/Speaker.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/Stepper-motor.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/transistor.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/ultrasound-sensor.png" alt="[picture of an arduino board]">
-        </div>
-        <div class="arduino-gallery-img">
-            <img src="Images-Ass2/Arduino-parts/Wires.png" alt="[picture of an arduino board]">
+        -->
+        <!-- edited pink arduino parts-->
+        <div class="arduino-gallery">
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/arduino-board.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/breadboard.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/Integrated-circuit.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/Joystick.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/LED-light.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/PIR-sensor.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/Push-button.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/Resistor.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/Speaker.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/Stepper-motor.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/transistor.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/ultrasound-sensor.png" alt="[picture of an arduino board]">
+            </div>
+            <div class="arduino-gallery-img">
+                <img src="Images-Ass2/Arduino-parts/Wires.png" alt="[picture of an arduino board]">
+            </div>
         </div>
 
-    </div>
-   
-    <h2>LED Circuit</h2>
-     <p>My LED circuit, which I created using Tinkercad. The LED is connected to pin 13, and the resistor is connected to the ground.</p>
-    <div class="overall-pictures">
-        <div class="overall-pictures img">
-            <img src="Images-Ass2/W6-LED.gif" alt="LED Circuit gif">
+        <h2>LED Circuit</h2>
+        <p>My LED circuit, which I created using Tinkercad. The LED is connected to pin 13, and the resistor is connected to the ground.</p>
+        <div class="W6-overview-arduino">
+            <div class="W6-overview-arduino img">
+                <img src="Images-Ass2/W6-LED.gif" alt="LED Circuit gif">
+            </div>
         </div>
-    </div>
 
-    <br>
-    <br>
+        <br><br>
 
-    <h2>2-light LED Circuit</h2>
-     <p>My LED circuit, which I created using Tinkercad. The LED is connected to pin 13, and the resistor is connected to the ground.</p>
-    <div class="W6-arduino-2">
-        <div class="W6-arduino-2 img">
-            <img src="Images-Ass2/W6-TWO-LED.jpeg" alt="2-light LED Circuit gif">
+        <h2>2-light LED Circuit</h2>
+        <p>My LED circuit, which I created using Tinkercad. The LED is connected to pin 13, and the resistor is connected to the ground.</p>
+        <div class="W6-arduino-2">
+            <div class="W6-arduino-2 img">
+                <img src="Images-Ass2/W6-TWO-LED.jpeg" alt="2-light LED Circuit gif">
+            </div>
         </div>
-    </div>
 
-    
+    </div><!-- end .container -->
+
 </body>
+</html>
