@@ -11,32 +11,33 @@
         body{
             font-family: monospace;
             font-size:large;
+            color: rgb(27, 114, 32);
         }
 
         .container {
             max-width: 1200px;
             width: 90%;
             margin: 0 auto;          /* centres the block horizontally */
-            border: 2px solid rgb(0, 0, 0);
+            border: 2px solid rgb(27, 114, 32);
             padding: 2rem;
             
         }
 
         h1{
-            background-color: black;
+            background-color: rgb(27, 114, 32);
             color: white;
             font-size:4em;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid rgb(0, 0, 0);
+            border: 2px solid rgb(27, 114, 32);
             padding: 2rem;
         }
         .overall-pictures {
             display: flex;
             justify-content: center;
             margin: auto;
-            border: 2px solid rgb(0, 0, 0);
+            border: 2px solid rgb(27, 114, 32);
             padding: 2rem;
         }
         .overall-pictures img {
@@ -62,12 +63,72 @@
             display:flex;
             margin:auto;
             padding: right 2rem;;
-            border: 2px solid rgb(0, 0, 0);
+            border: 2px solid rgb(27, 114, 32);
             padding: 2rem;
+        }
+
+        .falling-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .falling {
+            position: absolute;
+            top: -150px;
+            width: 80px;
+            animation: fall linear infinite;
+        }
+
+/* different positions + speeds */
+
+        .falling1 {
+            left: 10%;
+            animation-duration: 6s;
+        }
+
+        .falling2 {
+            left: 35%;
+            animation-duration: 9s;
+            animation-delay: 2s;
+        }
+
+        .falling3 {
+            left: 60%;
+            animation-duration: 7s;
+            animation-delay: 1s;
+        }
+
+        .falling4 {
+            left: 85%;
+            animation-duration: 10s;
+            animation-delay: 3s;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-150px) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(120vh) rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
+    <div class="falling-container">
+        <img src="Images-Ass2/potato.png" class="falling falling1">
+        <img src="Images-Ass2/potato.png" class="falling falling2">
+        <img src="Images-Ass2/potato.png" class="falling falling3">
+        <img src="Images-Ass2/potato.png" class="falling falling4">
+    </div>
+
     <div class="container">
     <h1>Week 8</h1>
     <p>Content for Week 8 goes here. VEGGIE SEASON OH YEA!</p>
@@ -87,9 +148,9 @@
     
    
    
-    <h2>Get Away From me! Ugh, as if!</h2>
-     <p>Following the wise words of Regina George, we went to create a defense mechanism for people who want
-        to be left alone! </p>
+    <h2>Veggie Orchestra</h2>
+     <p>This was so fun, especially when we played with the pitches 
+        saw  how to better use it with other objects (it was mainly potatoes, carrots and leaves hehe) </p>
     
         <div class="w8-videos">
             <video width="450" height="340" controls poster="Images-Ass2/W8-VEG-MUSIC.MOV">
