@@ -6,12 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script language="javascript" type="text/javascript" src="21APRIL-Processing/"></script>
     <title>Week 5</title>
+    <link rel="icon" type="image/gif" href="Images-Ass2/hamster.gif">
     <style>
       body{
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: jetbrains mono, monospace;
         font-size: large;
         background-color: rgb(250, 250, 250);
+        cursor: url('Images-Ass2/hamster.gif'), auto;
       }
+      .crt::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 0;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+
+      .crt-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes textShadow {
+  0% {
+    text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  5% {
+    text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  10% {
+    text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  15% {
+    text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  20% {
+    text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  25% {
+    text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  30% {
+    text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  35% {
+    text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  40% {
+    text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  45% {
+    text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  50% {
+    text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  55% {
+    text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  60% {
+    text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  65% {
+    text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  70% {
+    text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  75% {
+    text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  80% {
+    text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  85% {
+    text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  90% {
+    text-shadow: 3.443339761481782px 0 1px rgba(0,30,255,0.5), -3.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  95% {
+    text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  100% {
+    text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+}
+body,
+h1, h2, h3, h4, h5, h6,
+p, li, a, span, strong, em,
+button, label {
+  animation: textShadow 1.6s infinite;
+}
 
       h1{
             font-size:4em;
@@ -51,18 +143,30 @@
         .gallery-item:hover .caption {
             transform: translateY(0);
         }
+
+        iframe{
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
     </style>
 </head>
-<body>
-  <iframe width="100%" height="500" src="p5js/Yoko_Ono_Week_5/" style="border: none;" alt="poetic generative art inspired by Yoko Ono."></iframe>
-  <h1> Week 5 </h1>
-
+<body class="crt">
+  <!-- credit to this guy https://aleclownes.com/2017/02/01/crt-display.html for the crt stuff -->
+  <div class="crt-content">
+    <iframe width="100%" height="500" src="p5js/Yoko_Ono_Week_5/" style="border: none;" alt="poetic generative art inspired by Yoko Ono."></iframe>
+    <h1> Week 5 </h1>
+    
+      <iframe width="314" height="321" scrolling="no" src="https://gifypet.neocities.org/pet/pet.html?name=Teap&dob=1778558114&gender=f&element=Air&pet=hamster.gif&map=forest.jpg&background=1995.png&tablecolor=white&textcolor=black" frameborder="0"></iframe>
+  
+  <div class="draggable" id="cat-frame">
   <h2>Hunt 'n Gather</h2>
   <div class="gallery">
     <div class="gallery-item">
       <img src="Images-Ass2/HNG-Webcam-1.png" alt="Hunt'n'Gather Webcam">
       <div class="caption">Hunt'n'Gather Webcam</div>
     </div>
+  </div>
   </div>
 
 <!-- Remember to include your webcam work AND image work from Processing-->
@@ -92,6 +196,7 @@
 <iframe width="100%" height="800" src="p5js/Kusama_Week_5/" style="border: none;" alt="generative art of polka dots appearing which stop generating when interacted with."></iframe>
 
 
+
 <h2>Slave to the algorithm</h2>
     <p> Documenting what I do in a day, letting chance take over</p>
     <li>Should I have caffeine or no? Heads -> Yes. </li>
@@ -100,5 +205,7 @@
     <li>Done doing my work. Should I Walk home or tram home? Heads -> Walk home. </li>
     <li>Should I cook asian food or western food? Tails -> Made tomato pasta!! </li>
 
+  </div>
 </body>
+<script src="js/script.js"></script>
 </html>
