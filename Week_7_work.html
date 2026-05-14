@@ -4,89 +4,227 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script language="javascript" type="text/javascript" src="21APRIL-Processing/"></script>
     <title>Week 7</title>
-    <style>
-        body{
-            font-family: monospace;
-            font-size:large;
 
+    <style>
+        @font-face {
+            font-family: 'DeFonte';
+            src: url(Fonts/DeFonte\ reduced\ Normale.ttf) format('truetype');
+        }
+
+        body {
+            font-family: 'DeFonte', monospace;
+            font-size: large;
+            
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             width: 90%;
-            margin: 0 auto;          /* centres the block horizontally */
+            margin: 0 auto;
         }
 
-        h1{
-            font-size:4em;
+        h1 {
+            font-size: 4em;
+            border: 10px solid black;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
+        .main-body {
+            display: flex;
+            gap: 20px;
+        }
+
+        .playing-arduino,
+        .headphones-experiment {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .hunt-gather {
+            border: 1px solid black;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Hunt n Gather gallery */
+        .hng-gallery {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .hng-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hng-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .hng-item p {
+            font-size: x-small;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* General image galleries */
         .overall-pictures {
             display: flex;
+            gap: 10px;
             justify-content: center;
-            margin: auto;
+            margin: 20px 0;
         }
-        .overall-pictures img {
-            max-width: 60%;
-            height: auto;
-            justify-content: center;
-            filter: hue-rotate(40deg);
 
+        .picture-item {
+            flex: 1;
         }
-        .W7-initial-speakers img {
-            justify-content: center;
-            display: flex;
-            margin: auto;
-            max-width: 60%;
+
+        .picture-item img {
+            width: 100%;
             height: auto;
-            transform: rotate(360deg);
+            filter: hue-rotate(40deg);
         }
+
+        /* First Arduino image */
+        .W7-initial-speakers {
+            text-align: center;
+        }
+
+        .W7-initial-speakers img {
+            width: 100%;
+            height: auto;
+            margin: auto;
+            display: block;
+        }
+
     </style>
 </head>
+
 <body>
-    <!-- already put container here -->
+
     <div class="container">
-    <h1>Week 7</h1>
-    <p>Content for Week 7 goes here.</p>
-    <br>
-    <h2>Playing with Arduino speakers</h2>
-        <p>First we had to learn how to make a theremin with Arduino speakers.</p>
-    <div class="overall-pictures">
-        <div class="W7-initial-speakers img">
-            <!-- <div class="W6-overview-arduino img"> -->
-                <img src="Images-Ass2/W7-speakers.jpeg" alt="Week 6 Image Arduino Parts">
-                <p> Lord I did not like this, I'm sorry but this took forever. We first used
-                    my laptop too which ended up being the main problem which is so pointed, cause
-                    I like to think my laptop's fine! Anyways. Thermin picture.
-                </p>
+
+        <h1>Week 7</h1>
+
+        <!-- Hunt n Gather -->
+        <div class="hunt-gather">
+
+            <h2>Hunt n' Gather</h2>
+            <p>Three examples of physical computing.</p>
+
+            <div class="hng-gallery">
+
+                <div class="hng-item">
+                    <img src="Images-Ass2/W8-hng.jpg" alt="EEG laser etchings">
+                    <p>Laser etchings made from an EEG sensor.</p>
+                </div>
+
+                <div class="hng-item">
+                    <img src="Images-Ass2/W8-hng(2).jpg" alt="Digital graffiti device">
+                    <p>
+                        I came across this whilst scrolling on Instagram and it was so cool.
+                        And sorta illegal maybe. DIGITAL GRAFFITI WHO WOULD'VE THOUGHT.
+                    </p>
+                </div>
+
+                <div class="hng-item">
+                    <img src="Images-Ass2/W8-hng(3).jpg" alt="Screen manipulation device">
+                    <p>
+                        This is a device that can manipulate the screens of what it scans.
+                        It was made by a group of artists and hackers called
+                        "The Glitch Mob".
+                    </p>
+                </div>
+
             </div>
+
         </div>
-    
-   
-    <!-- Headphones experiment -->
-    <h2>Get Away From me! Ugh, as if!</h2>
-     <p>Following the wise words of Regina George, we went to create a defense mechanism for people who want
-        to be left alone! </p>
-    <div class="overall-pictures">
-        <div class="overall-pictures img">
-            <img src="Images-Ass2/w7-arduino-straight.jpeg" alt="Front view of arduino speakers">
+
+
+        <!-- Main body -->
+        <div class="main-body">
+
+
+            <!-- Arduino -->
+            <div class="playing-arduino">
+
+                <h2>Playing with Arduino speakers</h2>
+
+                <p>
+                    First we had to learn how to make a theremin
+                    with Arduino speakers.
+                </p>
+
+                <div class="W7-initial-speakers">
+
+                    <img src="Images-Ass2/W7-speakers.jpeg"
+                         alt="Arduino speaker setup">
+
+                    <p>
+                        Lord I did not like this, I'm sorry but this took forever.
+                        We first used my laptop too which ended up being the main
+                        problem which is so pointed, cause I like to think my
+                        laptop's fine! Anyways. Theremin picture.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Headphones experiment -->
+            <div class="headphones-experiment">
+
+                <h2>Get Away From me! Ugh, as if!</h2>
+
+                <p>
+                    Following the wise words of Regina George,
+                    we went to create a defense mechanism for
+                    people who want to be left alone!
+                </p>
+
+                <div class="overall-pictures">
+
+                    <div class="picture-item">
+                        <img src="Images-Ass2/w7-arduino-straight.jpeg"
+                             alt="Front view">
+                    </div>
+
+                    <div class="picture-item">
+                        <img src="Images-Ass2/w7-arduino-right.jpeg"
+                             alt="Right view">
+                    </div>
+
+                    <div class="picture-item">
+                        <img src="Images-Ass2/w7-arduino-left.jpeg"
+                             alt="Left view">
+                    </div>
+
+                    <div class="picture-item">
+                        <img src="Images-Ass2/w7-arduino-back.jpeg"
+                             alt="Back view">
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-        <div class="overall-pictures img">
-            <img src="Images-Ass2/w7-arduino-right.jpeg" alt="Front view of arduino speakers">
-        </div>
-        <div class="overall-pictures img">
-            <img src="Images-Ass2/w7-arduino-left.jpeg" alt="Front view of arduino speakers">
-        </div>
-        <div class="overall-pictures img">
-            <img src="Images-Ass2/w7-arduino-back.jpeg" alt="Front view of arduino speakers">
-        </div>
+
     </div>
-    </div>
-    <br>
-    <br>
-    </div>
-    </body>
+
+</body>
+</html>
