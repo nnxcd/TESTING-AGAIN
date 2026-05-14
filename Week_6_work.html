@@ -14,12 +14,12 @@
 
         body{
             background-color: rgb(34, 13, 4);
-            font-family: 'Oceanside-Typewriter', monospace;
+            font-family: bell mt;
             color:rgb(235, 116, 165);
             cursor: url(cursor/CrosshairPrecisionBlue.cur) 24 24, auto;
             /* text-shadow: 
                 0 0 5px rgb(235, 116, 165); */
-            font-size: smaller;
+            font-size:small;
         }
 
         /* ── CENTERED CONTAINER ── */
@@ -30,6 +30,7 @@
         }
 
         h1{
+            font-family: 'Oceanside-Typewriter', monospace;
             font-size:3em;
             display: flex;
             justify-content: center;
@@ -102,14 +103,15 @@
         }
 
         .header-icons {
-            display: flex;
+            max-width: 30%;
             align-items: flex-end;   /* aligns bottoms, creating diagonal feel */
             justify-content: flex-end;
-            gap: 0.5rem;
+            gap: 1px;
         }
 
         .header-icons img {
-            width: 8%;
+            align-items: flex-end;
+            width: 25%;
             height: auto;
         }
 
@@ -124,10 +126,11 @@
 
     <!-- ── EVERYTHING LIVES INSIDE .container ── -->
     <div class="container">
+
         <div class="header-icons">
-            <img src="Images-Ass2/header/heart-w5.png">
-            <img src="Images-Ass2/header/heart-w7.png">
-            <img src="Images-Ass2/header/heart-w8.png">
+            <a href ="Week_5_work.html"><img src="Images-Ass2/header/heart-w5.png"></a>
+            <a href ="Week_7_work.html"><img src="Images-Ass2/header/heart-w7.png"></a>
+            <a href ="Week_8_work.html"><img src="Images-Ass2/header/heart-w8.png"></a>
         </div>
 
         <h1>Week 6</h1>
