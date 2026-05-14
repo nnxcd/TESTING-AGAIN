@@ -7,31 +7,43 @@
     <script language="javascript" type="text/javascript" src="21APRIL-Processing/"></script>
     <title>Week 6</title>
     <style>
+        @font-face {
+            font-family: 'Oceanside-Typewriter';
+            src: url(Fonts/Oceanside\ Typewriter.ttf);
+        }
 
         body{
             background-color: rgb(34, 13, 4);
-            font-family: monospace;
+            font-family: 'Oceanside-Typewriter', monospace;
             color:rgb(235, 116, 165);
             cursor: url(cursor/CrosshairPrecisionBlue.cur) 24 24, auto;
-            text-shadow: 
-                0 0 5px rgb(235, 116, 165); 
-            font-size: large;
+            /* text-shadow: 
+                0 0 5px rgb(235, 116, 165); */
+            font-size: smaller;
         }
 
         /* ── CENTERED CONTAINER ── */
         .container {
-            max-width: 1200px;
+            max-width: 500px;
             width: 90%;
             margin: 0 auto;          /* centres the block horizontally */
         }
 
         h1{
-            font-size:4em;
+            font-size:3em;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
+        h2{
+            font-family: 'Oceanside-Typewriter', monospace;
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
         /* style for arduino pics */
         .arduino-gallery {
             display: grid;
@@ -40,7 +52,7 @@
         }
 
         .arduino-gallery img {
-            width: 90%;
+            width: 100%;
             height: auto;
             animation: bounce 2s ease-in-out infinite;
         }
@@ -74,7 +86,7 @@
             margin: auto;
         }
         .W6-overview-arduino img {
-            max-width: 60%;
+            max-width: 100%;
             height: auto;
              
         }
@@ -89,12 +101,34 @@
             transform: rotate(90deg);  
         }
 
+        .header-icons {
+            display: flex;
+            align-items: flex-end;   /* aligns bottoms, creating diagonal feel */
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
+        .header-icons img {
+            width: 8%;
+            height: auto;
+        }
+
+
+        .header-icons img:nth-child(1) { transform: translateY(0px); }
+        .header-icons img:nth-child(2) { transform: translateY(0px); }
+        .header-icons img:nth-child(3) { transform: translateY(0px); }
+
     </style>
 </head>
 <body>
 
     <!-- ── EVERYTHING LIVES INSIDE .container ── -->
     <div class="container">
+        <div class="header-icons">
+            <img src="Images-Ass2/header/heart-w5.png">
+            <img src="Images-Ass2/header/heart-w7.png">
+            <img src="Images-Ass2/header/heart-w8.png">
+        </div>
 
         <h1>Week 6</h1>
         <p>Content for Week 6 goes here.</p>
@@ -104,8 +138,8 @@
         <p>Here is an overview of the different parts of an Arduino, which I created using Tinkercad.</p>
         <br>
         <br>
+        <!--
         <div class="overall-pictures">
-            <!--
             <div class="W6-overview-arduino">
                 <div class="W6-overview-arduino img">
                     <img src="Images-Ass2/(W6)named-arduino-parts.jpeg" alt="Week 6 Image Arduino Parts">
