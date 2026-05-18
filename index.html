@@ -11,11 +11,23 @@
     font-family: monospace;
     background-color: rgb(224, 40, 3);
     cursor: url(cursor/CrosshairPrecisionBlue.cur) 24 24, auto;
+    animation: blinker 1s linear infinite;
+    /* text-shadow: 
+    0 0 2px rgb(139, 80, 80), 
+    0 0 5px rgb(136, 70, 70); */
+   
   }
 
   p.main-words {
-    font-size:3cap;
+    font-size:1rem;
     color:rgb(49, 27, 4);
+    
+  }
+
+  @keyframes blinker {
+    80% {
+      opacity: 0.5;
+    }
   }
 
   p.notification {
@@ -73,6 +85,7 @@
     width: 600px;         /* control size here */
     height: auto;
     
+    
   }
 
   .inspiration-photos {
@@ -119,6 +132,7 @@
     <br>05 > <a href="Week_5_work.html"style="color:rgb(97, 21, 21)">WEEK 5 </a>
     <br>06 > <a href="Week_6_work.html"style="color:rgb(97, 21, 21)">WEEK 6 </a>
     <br>07 > <a href="Week_7_work.html"style="color:rgb(97, 21, 21)">WEEK 7 </a>
+    <br>0809 > <a href="Week_8-9_work.html"style="color:rgb(97, 21, 21)">WEEK 8 </a>
   </p>
 <!--notification-->
   <p class="notification">
