@@ -1,6 +1,6 @@
 // Define global variables: font and fontSize.
 let font;
-let fontsize = 50;
+let fontsize = 300;
 
 async function setup() {
   describe(

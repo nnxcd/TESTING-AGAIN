@@ -1,33 +1,51 @@
-// Enable drag and drop functionality for draggable elements
-const draggables = document.querySelectorAll('.draggable');
-let draggedElement = null;
-let offsetX = 0;
-let offsetY = 0;
+// Get all the elements with class name "draggable":
+var draggableElements = document.getElementsByClassName("draggable");
 
-draggables.forEach(draggable => {
-  draggable.addEventListener('mousedown', (e) => {
-    draggedElement = draggable;
-    draggedElement.classList.add('dragging');
-    
-    // Calculate offset between mouse position and element position
-    const rect = draggable.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-  });
-});
+// Apply dragElement function to each draggable element:
+for (var i = 0; i < draggableElements.length; i++) {
+  dragElement(draggableElements[i]);
+}
 
-document.addEventListener('mousemove', (e) => {
-  if (draggedElement) {
-    draggedElement.style.position = 'fixed';
-    draggedElement.style.left = (e.clientX - offsetX) + 'px';
-    draggedElement.style.top = (e.clientY - offsetY) + 'px';
-    draggedElement.style.zIndex = '999';
+function dragElement(elmnt) {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  if (elmnt.getElementsByClassName(elmnt.className)[0]) {
+    elmnt.getElementsByClassName(elmnt.className)[0].onmousedown =
+      dragMouseDown;
+  } else {
+    // move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
   }
-});
 
-document.addEventListener('mouseup', () => {
-  if (draggedElement) {
-    draggedElement.classList.remove('dragging');
-    draggedElement = null;
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
   }
-});
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
