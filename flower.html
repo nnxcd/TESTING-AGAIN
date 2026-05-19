@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 5</title>
+    <title>Animated Shapes</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <style>
         * {
@@ -11,202 +11,19 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        body{
-            background:rgb(245,245,245);
-            overflow:hidden;
-            font-family:Arial, Helvetica, sans-serif;
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: #f5f5f5;
         }
-        .background-content{
-            position:absolute;
-            top:8vh;
-            left:3vw;
-            width:40vw;
-            z-index:10;
-            color:black;
-        }
-
-        .content-windows{
-            position:absolute;
-            z-index:2;
-        }
-
-        .content-windows iframe{
-            width:40vw;
-            height:35vh;
-            border:none;
-        }
-
-        /* Yoko Ono window position */
-        #yoko-ono{
-            top:8vh;
-            right:-5vw;
-            z-index:10;
-        }
-
-        /* Kusama window position */
-        #kusama{
-            bottom:5vh;
-            left:2vw;
-        }
-
-        #slave-algo{
-            top:60vh;
-            left:76vw;
-            width:30vw;
-            z-index:10;
-            
-        }
-
-        #slave-algo h2{
-            font-size:2vw;
-            line-height:0.75;
-            letter-spacing:-3px;
-            font-weight:bold;
-            transform:scaleX(0.5);
-            padding-bottom: 40px;
-            
-        }
-
-        
-
-
-        h1{
-            font-size:10vw;
-            line-height:0.75;
-            letter-spacing:-10px;
-            text-transform:uppercase;
-            transform:scaleX(0.4);
-            margin-bottom:2vh;
-        }
-
-        p{
-            font-size:2vw;
-            line-height:0.82;
-            letter-spacing:-1.8px;
-            font-weight:bold;
-            width:20vw;
-            transform:scaleX(0.7);
-            margin-bottom: 1vh;
-            margin-left: -5vw;
-            color: rgb(24, 212, 27);
-        }
-
-        p.graphics-credit{
-            left: 0.5vw;
-            font-size:1vw;
-            line-height:0.82;
-            letter-spacing:-1.8px;
-            font-weight:lighter;
-            margin-top: -23vh;
-            margin-left:4vw;
-            color:black;
-            width:32vw;
-            transform:scaleX(0.96);
-            
-        }
-
-        
         #p5-container {
             width: 100vw;
             height: 100vh;
         }
-
-        .white-word {
-            color: white;
-        }
-
-        .hng-content-windows{
-            position: absolute;
-            width:48vw;
-            height:90vh;
-            top:20vh;
-            left:50%;
-            transform: translateX(-50%);
-            z-index: 30;
-        }
-
-        .hng-content-windows iframe{
-            width:100%;
-            height:100%;
-            border:none;
-        }
-
-        .hng-content-windows p{
-            color:rgb(136, 0, 255);
-        }
-
-        #masks-hng{
-            top: 30vh;
-            left: 20%;
-            z-index: 10;
-            max-width: 600px;
-            max-height: 300px;
-            -webkit-overflow-scrolling: touch;
-            touch-action: auto;
-        }
-
-        #ghost-hng{
-            top: 70vh;
-            left: 60%;
-            max-width: 600px;
-            max-height: 300px;
-            z-index: 10;
-        }
     </style>
 </head>
 <body>
-    <!-- add more documentation later-->
-    <div class="content-windows" id="yoko-ono">
-        <iframe
-            src="p5js/Yoko_Ono_Week_5/"
-            title="Yoko Ono">
-        </iframe>
-    </div>
-    
-    <div class="content-windows" id="kusama">
-        <iframe
-            src="p5js/Kusama_Week_5/"
-            title="Kusama">
-        </iframe>
-    </div>
-
-    <div class="content-windows" id="slave-algo">
-        <h2>#Slave to the <span class="white-word">algorithm</span></h2>
-        <p>Documenting what I do in a day, letting chance take over</p>
-        <ul>
-            <li>Should I have caffeine or no? Heads → Yes.</li>
-            <li>Should I have matcha or try something new? Tails → Try something new.</li>
-            <li>Should I study at home or school? Heads → Study alone and lock in.</li>
-            <li>Walk home or tram home? Heads → Walk home.</li>
-            <li>Asian food or western food? Tails → Tomato pasta.</li>
-        </ul>
-        
-    </div>
-
-    <div class="hng-content-windows" id="masks-hng"> 
-        <iframe
-                src="https://masks.constraint.systems/"
-                allow="camera;microphone">
-            </iframe>
-        <p> hunt-n-gather #1 mirror mirror webcam</p>
-    </div>
-    
-    <div class="hng-content-windows" id="ghost-hng"> 
-        <iframe
-            src="https://ghost.constraint.systems/"
-            allow="camera;microphone">
-        </iframe>
-        <p> hunt-n-gather #2 mirror mirror webcam</p>
-    </div>
-
-    <!-- Background graphics by Tessie Gresley -->
-    <div class="background-content">
-    <h1>Week 5 </h1>
-    <p class="graphics-credit"> Graphics is thanks to Tessie Gresley.</p>
-    <div class="windows-frame">
-    </div>
-
+hello
     <script>
         let gridSize = 30;
         let starGridSize = 20;
@@ -282,7 +99,7 @@
             offsetY = height / 2 - (flowerPattern.length * gridSize) / 2;
 
             starOffsetX = width - starPattern[0].length * starGridSize - 40;
-            starOffsetY = height - starPattern.length * starGridSize - 400;
+            starOffsetY = 40;
 
             heartOffsetX = 80;
             heartOffsetY = 190;

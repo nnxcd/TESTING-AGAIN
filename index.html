@@ -7,19 +7,195 @@
   <!--CSS-->
   <style>
 
+  html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
   body {
     font-family: monospace;
     background-color: rgb(224, 40, 3);
     cursor: url(cursor/CrosshairPrecisionBlue.cur) 24 24, auto;
-    animation: blinker 1s linear infinite;
+    /*animation: blinker 1s linear infinite;
     /* text-shadow: 
     0 0 2px rgb(139, 80, 80), 
     0 0 5px rgb(136, 70, 70); */
    
   }
 
+  .crt::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 0;
+    background-size: 100% 6px, 10px 100%;
+    pointer-events: none;
+  }
+
+  .crt-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes flicker {
+  0% {
+  opacity: 0.27861;
+  }
+  5% {
+  opacity: 0.34769;
+  }
+  10% {
+  opacity: 0.23604;
+  }
+  15% {
+  opacity: 0.90626;
+  }
+  20% {
+  opacity: 0.18128;
+  }
+  25% {
+  opacity: 0.83891;
+  }
+  30% {
+  opacity: 0.65583;
+  }
+  35% {
+  opacity: 0.67807;
+  }
+  40% {
+  opacity: 0.26559;
+  }
+  45% {
+  opacity: 0.84693;
+  }
+  50% {
+  opacity: 0.96019;
+  }
+  55% {
+  opacity: 0.08594;
+  }
+  60% {
+  opacity: 0.20313;
+  }
+  65% {
+  opacity: 0.71988;
+  }
+  70% {
+  opacity: 0.53455;
+  }
+  75% {
+  opacity: 0.37288;
+  }
+  80% {
+  opacity: 0.71428;
+  }
+  85% {
+  opacity: 0.70419;
+  }
+  90% {
+  opacity: 0.7003;
+  }
+  95% {
+  opacity: 0.36108;
+  }
+  100% {
+  opacity: 0.24387;
+  }
+}
+
+.crt::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes textShadow {
+  0% {
+    text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  5% {
+    text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  10% {
+    text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  15% {
+    text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  20% {
+    text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  25% {
+    text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  30% {
+    text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  35% {
+    text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  40% {
+    text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  45% {
+    text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  50% {
+    text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  55% {
+    text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  60% {
+    text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  65% {
+    text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  70% {
+    text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  75% {
+    text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  80% {
+    text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  85% {
+    text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  90% {
+    text-shadow: 3.443339761481782px 0 1px rgba(0,30,255,0.5), -3.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  95% {
+    text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+  100% {
+    text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+  }
+}
+.crt {
+  animation: textShadow 1.6s infinite;
+}
+
   p.main-words {
-    font-size:1rem;
+    font-size:2rem;
     color:rgb(49, 27, 4);
     
   }
@@ -81,9 +257,10 @@
     position: fixed;      /* stays centered while scrolling */
     top: 50%;             /* moves to vertical center */
     left: 50%;            /* moves to horizontal center */
-    transform: translate(-50%, -30%);  /* perfectly centers it */
+    transform: translate(-30%, -30%);  /* perfectly centers it */
     width: 600px;         /* control size here */
     height: auto;
+    scale: 1.5;
     
     
   }
@@ -110,88 +287,90 @@
   
   </style>
 </head>
-<body>
-  <p class="student-info">
-    STUDENT NAME: 
-    <br><B>NADIA GO </B>
-    <BR>STUDENT ID: 
-    <br><b>1386705</b>
-    <br>image credits to:
-    <br> <a href="https://www.pinterest.com/pin/136022851239464573/" style="color: rgb(136, 33, 33);">Pinterest</a>
+<!-- creds to https://aleclownes.com/2017/02/01/crt-display.html for crt effect -->
+<body class="crt">
+  <div class="crt-content">
+    <p class="student-info">
+      STUDENT NAME: 
+      <br><B>NADIA GO </B>
+      <BR>STUDENT ID: 
+      <br><b>1386705</b>
+      <br>image credits to:
+      <br> <a href="https://www.pinterest.com/pin/136022851239464573/" style="color: rgb(136, 33, 33);">Pinterest</a>
+    </p>
+
+    
+    <!--clickable links-->
+    <p class="main-words">
+      - 01
+      <br>.INTERACTIVE MEDIA </br>
+      <br>01 > <a href="Week_1_work.html" style="color:rgb(97, 21, 21)">WEEK 1 </a>
+      <br>02 > <a href="Week_2_work.html" style="color:rgb(97, 21, 21)">WEEK 2 </a>
+      <br>03 > <a href="Week_3_work.html"style="color:rgb(97, 21, 21)">WEEK 3 </a>
+      <br>04 > <a href="Week_4_work.html"style="color:rgb(97, 21, 21)">WEEK 4 </a>
+      <br>05 > <a href="Week_5_work.html"style="color:rgb(97, 21, 21)">WEEK 5 </a>
+      <br>06 > <a href="Week_6_work.html"style="color:rgb(97, 21, 21)">WEEK 6 </a>
+      <br>07 > <a href="Week_7_work.html"style="color:rgb(97, 21, 21)">WEEK 7 </a>
+      <br>0809 > <a href="Week_8-9_work.html"style="color:rgb(97, 21, 21)">WEEK 8 </a>
+    </p>
+  <!--notification-->
+    <p class="notification">
+      <i>- click on the above only -</i>
+    </p>
+  <br>
+  <img src="images/trans-helment-man.png" class="center-image">
+  <!--filler-->
+  <p class="left-side-decoration">
+    . . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>
+    <br> 
+    <br>
+    = 01234
+    <br>
+    <br>
+    <br>
+    <br>. . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>. . . . . . . . . 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    PLEASE- - - - INSERT - - - 
+    <br> PASSWORD - - - - 
+    <br>
+    <br>(PASSWORD: ________)
   </p>
 
-  
-  <!--clickable links-->
-  <p class="main-words">
-    - 01
-    <br>.INTERACTIVE MEDIA </br>
-    <br>01 > <a href="Week_1_work.html" style="color:rgb(97, 21, 21)">WEEK 1 </a>
-    <br>02 > <a href="Week_2_work.html" style="color:rgb(97, 21, 21)">WEEK 2 </a>
-    <br>03 > <a href="Week_3_work.html"style="color:rgb(97, 21, 21)">WEEK 3 </a>
-    <br>04 > <a href="Week_4_work.html"style="color:rgb(97, 21, 21)">WEEK 4 </a>
-    <br>05 > <a href="Week_5_work.html"style="color:rgb(97, 21, 21)">WEEK 5 </a>
-    <br>06 > <a href="Week_6_work.html"style="color:rgb(97, 21, 21)">WEEK 6 </a>
-    <br>07 > <a href="Week_7_work.html"style="color:rgb(97, 21, 21)">WEEK 7 </a>
-    <br>0809 > <a href="Week_8-9_work.html"style="color:rgb(97, 21, 21)">WEEK 8 </a>
+  <div class="inspiration-photos">
+    <p>hopefully ur reaction to 
+      <br>seeing this:</p>
+    <img src="monkeyshock.jpeg" alt="monkey shock">
+    <img src="monkeythinking.jpg" alt="monkey think">
+    
+  </div>
+  <p class="bottom-text">
+    <br>////
+    <br> - END OF PAGE
+    <br> ASSIGNMENT WWWORKBOOK A
   </p>
-<!--notification-->
-  <p class="notification">
-    <i>- click on the above only -</i>
+
+  <p class="right-decoration-dots">
+  <br>*****************************************
+  <br>*****************************************
+  <br>*****************************************
+  <br>*****************************************
+  <br>*****************************************
   </p>
-<br>
-<img src="images/trans-helment-man.png" class="center-image">
-<!--filler-->
-<p class="left-side-decoration">
-  . . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>
-  <br> 
-  <br>
-  = 01234
-  <br>
-  <br>
-  <br>
-  <br>. . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>. . . . . . . . . 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  PLEASE- - - - INSERT - - - 
-  <br> PASSWORD - - - - 
-  <br>
-  <br>(PASSWORD: ________)
-</p>
-
-<div class="inspiration-photos">
-  <p>hopefully ur reaction to 
-    <br>seeing this:</p>
-  <img src="monkeyshock.jpeg" alt="monkey shock">
-  <img src="monkeythinking.jpg" alt="monkey think">
-  
-</div>
-<p class="bottom-text">
-  <br>////
-  <br> - END OF PAGE
-  <br> ASSIGNMENT WWWORKBOOK A
-</p>
-
-<p class="right-decoration-dots">
-<br>*****************************************
-<br>*****************************************
-<br>*****************************************
-<br>*****************************************
-<br>*****************************************
-</p>
-
+  </div>
 
 
 

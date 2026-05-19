@@ -5,21 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 7</title>
+    
+    
+    <script src="js/hover_Sound.js"></script>
 
     <style>
         @font-face {
             font-family: 'DeFonte';
             src: url(Fonts/DeFonte\ reduced\ Normale.ttf) format('truetype');
         }
-
+        /* got this polka dot thing from https://stackoverflow.com/questions/76334032/how-to-create-a-polka-dot-texture-with-linear-gradient-as-background-in-css */
         body {
             font-family: 'DeFonte', monospace;
             font-size: large;
             
+            background: wheat;
+            background-image: radial-gradient(rgb(0, 242, 255) 20%, transparent 0), /* polka dots */
+                                linear-gradient(to right, white , white); /* your gradient */
+
+            background-size: 500px 500px, /* polka dots */
+                            100% 100%; /* your gradient */
+
+            background-position: 0 0, 35px 35px;
+            /* Without a 3rd set of values, the 3rd gradient
+                will default to the first set of values (0 0) */ 
+        }
+        .home-button {
+            position: fixed;
+            top: 1vh;
+            left: 1vw;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+            padding: 0.25rem 0.5rem;
+            
+            border-radius: 6px;
+            z-index: 100;
+        }
+
+        .home-button p{
+            position: static;
+            margin: 0;
+            font-size: 0.9rem;
+            color: inherit;
+        }
+
+        .home-button img{
+            width: 100px;
+            height: auto;
+            display: block;
         }
 
         p {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: monospace;
             font-size: small;
         }
 
@@ -35,11 +74,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: white;
+        }
+
+        h1:hover{
+            background-color: rgb(0, 255, 225);
+            color: rgb(4, 54, 45);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .main-body {
             display: flex;
             gap: 20px;
+            background-color: white;
         }
 
         .playing-arduino,
@@ -48,13 +95,33 @@
             padding: 20px;
         }
 
+        .playing-arduino:hover{
+            background-color: rgb(255, 0, 111);
+            color: rgb(245, 245, 245);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .headphones-experiment:hover {
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
         .hunt-gather {
             border: 1px solid black;
             padding: 20px;
             margin-bottom: 20px;
+            background-color: white;
+        }
+
+        .hunt-gather:hover{
+            background-color: rgb(64, 0, 255);
+            color: rgb(248, 248, 248);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Hunt n Gather gallery */
+
         .hng-gallery {
             display: flex;
             gap: 15px;
@@ -81,6 +148,7 @@
         }
 
         /* General image galleries */
+
         .overall-pictures {
             display: flex;
             gap: 10px;
@@ -99,6 +167,7 @@
         }
 
         /* First Arduino image */
+
         .W7-initial-speakers {
             text-align: center;
         }
@@ -110,43 +179,136 @@
             display: block;
         }
 
+        /* MODAL */
+
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal__window {
+            position: relative;
+            background-color: white;
+            border: 10px; 
+            border-style: solid;
+            border-color: rgb(0, 0, 0);
+            padding: 4em 2em;
+            max-width: 500px;
+            width: 80%;
+            text-align: center;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 2em;
+            font-family: monospace;
+        }
+
+        #close-modal:checked + #modal{
+            display:none;
+        }
+
+        #bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Puts it behind everything */
+            pointer-events: none; /* Allows clicking through to the content */
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1; /* Ensures content stays on top */
+            color: white;
+        }
+
+        
+
     </style>
 </head>
 
 <body>
+    
+    
+
+
+    <!-- AUTO POP-UP MODAL -->
+
+    <input type="checkbox" id="close-modal" hidden>
+
+    <div id="modal">
+        <div class="modal__window">
+
+            <label for="close-modal" class="modal__close">✕</label>
+
+            <h2>Please to meet you! Little warning: </h2>
+
+            <p>
+                There'll be strong vibrant colours here that pop up when you hover over them, so WARNING FOR THAT!! Also make sure your volume's on >:3 
+            </p>
+
+        </div>
+    </div>
+
+    <!-- END OF MODAL, got source from https://dev.to/pachicodes/creating-a-css-modal-window-pop-up-step-by-step-1f59 -->
+
 
     <div class="container">
 
         <h1>Week 7</h1>
 
         <!-- Hunt n Gather -->
+
         <div class="hunt-gather">
 
             <h2>Hunt n' Gather</h2>
+
             <p>Three examples of physical computing.</p>
 
             <div class="hng-gallery">
 
                 <div class="hng-item">
-                    <img src="Images-Ass2/W8-hng.jpg" alt="EEG laser etchings">
-                    <p>Laser etchings made from an EEG sensor.</p>
+                    <a href="https://www.laurasplan.com/projects/blank-stare">
+                    <img src="Images-Ass2/W8-hng.jpg" alt="EEG laser etchings"> </a>
+
+                    <p>
+                       This is the work of Laura Splan, with laser etchings made from an EEG sensor, that tracks
+                     waveforms of fluctuating levels of attention. 
+                    </p>
+
                 </div>
 
                 <div class="hng-item">
+
                     <img src="Images-Ass2/W8-hng(2).jpg" alt="Digital graffiti device">
-                    <p>
-                        I came across this whilst scrolling on Instagram and it was so cool.
-                        And sorta illegal maybe. DIGITAL GRAFFITI WHO WOULD'VE THOUGHT.
-                    </p>
-                </div>
 
-                <div class="hng-item">
-                    <img src="Images-Ass2/W8-hng(3).jpg" alt="Screen manipulation device">
                     <p>
-                        This is a device that can manipulate the screens of what it scans.
-                        It was made by a group of artists and hackers called
-                        "The Glitch Mob".
+                        This is a device that can manipulate the screens of what it scans. 
+                        It was made by a group of artists and hackers called "The Glitch Mob", and it's called
+                        'Digital Graffiti', which I found quite interesting. 
+                        
                     </p>
+
                 </div>
 
             </div>
@@ -155,10 +317,11 @@
 
 
         <!-- Main body -->
+
         <div class="main-body">
 
-
             <!-- Arduino -->
+
             <div class="playing-arduino">
 
                 <h2>Playing with Arduino speakers</h2>
@@ -174,10 +337,7 @@
                          alt="Arduino speaker setup">
 
                     <p>
-                        Lord I did not like this, I'm sorry but this took forever.
-                        We first used my laptop too which ended up being the main
-                        problem which is so pointed, cause I like to think my
-                        laptop's fine! Anyways. Theremin picture.
+                        Lord I did not like this.
                     </p>
 
                 </div>
@@ -186,36 +346,32 @@
 
 
             <!-- Headphones experiment -->
+
             <div class="headphones-experiment">
 
                 <h2>Get Away From me! Ugh, as if!</h2>
 
                 <p>
                     Following the wise words of Regina George,
-                    we went to create a defense mechanism for
-                    people who want to be left alone!
+                    we went to create a defense mechanism.
                 </p>
 
                 <div class="overall-pictures">
 
                     <div class="picture-item">
-                        <img src="Images-Ass2/w7-arduino-straight.jpeg"
-                             alt="Front view of chindogu device offering headphones to people who want to be left alone">
+                        <img src="Images-Ass2/w7-arduino-straight.jpeg">
                     </div>
 
                     <div class="picture-item">
-                        <img src="Images-Ass2/w7-arduino-right.jpeg"
-                             alt="Right view of chindogu device offering headphones to people who want to be left alone">
+                        <img src="Images-Ass2/w7-arduino-right.jpeg">
                     </div>
 
                     <div class="picture-item">
-                        <img src="Images-Ass2/w7-arduino-left.jpeg"
-                             alt="Left view of chindogu device offering headphones to people who want to be left alone">
+                        <img src="Images-Ass2/w7-arduino-left.jpeg">
                     </div>
 
                     <div class="picture-item">
-                        <img src="Images-Ass2/w7-arduino-back.jpeg"
-                             alt="Back view of chindogu device offering headphones to people who want to be left alone">
+                        <img src="Images-Ass2/w7-arduino-back.jpeg">
                     </div>
 
                 </div>
@@ -224,7 +380,17 @@
 
         </div>
 
+        <div class="home-button">
+            
+            <p> click on me to go home!</p>
+            <a href="index.html">
+                <img src= "https://gifypet.neocities.org/pet/pets/robot.gif" alt="Robot Home button">
+            </a>
+        </div>
+
     </div>
+    <!-- sound was thanks to https://www.101soundboards.com/boards/11024-discord-sounds-official#goog_rewarded i think its the funniest thing ive ever done j cos i think the discord notif sound is the most annoying thing ever
+     'cause they never show u what the notif is. u just hear it. logic credits to Claude Code -->
 
 </body>
 </html>
