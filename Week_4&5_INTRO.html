@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NXTNTR</title>
+    <link rel="icon" type="image/gif" href="Images-Ass2/potato.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .w4-button,
+        .w5-button,
+        .hng-button {
+            position: fixed;
+            z-index: 100;
+            padding: 15px 25px;
+        }
+
+        .w4-button {
+            top: 20px;
+            left: 20px;
+        }
+
+        .w5-button {
+            top: 70px;
+            left: 20px;
+        }
+
+        .hng-button {
+            top: 120px;
+            left: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid black;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: rgba(73, 223, 253, 0.8);
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <body>
+        <div class="w4-button">
+            <a href="Week_4_work.html">
+                <button>Week 4</button>
+            </a>
+        </div>
+
+        <div class="w5-button">
+            <a href="Week_5_work.html">
+                <button>Week 5</button>
+            </a>
+        </div>
+
+        <div class="hng-button">
+            <a href="W4&5_HNG.html">
+                <button>Hunted and gathered (W4-W5)</button>
+            </a>
+        </div>
+
+    </body>
+    <!-- sourced from https://openprocessing.org/@u583880/2904110 -->
+    <script>
+        let particles = [];
+        let time = 0;
+        let colorPalette = ['#FFFFFF', '#FFFFFF', '#FFFFFF'];
+
+        function setup() {
+            createCanvas(window.innerWidth, window.innerHeight);
+        }
+
+        function draw() {
+            // Background with slight fading and blur,
+            // so trails remain visible and look like flowing water.
+            background(0, 20);
+            filter(BLUR);
+            stroke(255);
+
+            /* ---- particle creation loop ----
+             * Instead of spawning just one particle per frame,
+             * we generate several at once (here 9), to simulate
+             * the "dense rainfall" effect.
+             */
+            let i = 9;
+            while (i > 0) {
+                i--;
+
+                // The particle index depends on time,
+                // so older particles get replaced cyclically.
+                let index = time % (width * 9);
+
+                // x-position drifts horizontally over time
+                // (like raindrops entering at different stair positions).
+                let px = (time * 99) % width;
+
+                // Each particle starts at the top (y=0),
+                // with no vertical velocity yet.
+                let obj = {
+                    x: px,
+                    y: 0,
+                    g: 0, // vertical acceleration ("gravity")
+                    s: 2, // size of the droplet
+                    c: random(colorPalette)
+                };
+
+                // Store in particles array
+                particles[index] = obj;
+                time = time + 1;
+            }
+
+            /* ---- particle update & render loop ----
+             * This is where each particle is instructed how to "flow"
+             * down the stairs. Motion is guided by Perlin noise
+             * instead of fixed gravity, so the drops sometimes
+             * fall straight, sometimes hesitate and slide sideways,
+             * mimicking the way water splits and searches for channels.
+             */
+            for (let idx = 0; idx < particles.length; idx++) {
+                let p = particles[idx];
+
+                // Slowly shrink the droplet as it moves down,
+                // like water dispersing into the surface.
+                p.s = p.s * 0.998;
+                strokeWeight(p.s);
+                stroke(p.c);
+
+                // Perlin noise is used as a "terrain map"
+                // that tells particles when to fall vs. when to slide.
+                let Noise = noise(p.x / width, p.y / 5, time / width);
+
+                /* --- horizontal motion ---
+                 * If noise is high, the drop sticks to its vertical path.
+                 * If noise is lower, we make the drop jitter sideways,
+                 * producing the staircase-like zig-zag motion.
+                 */
+                if (Noise > 0.4) {
+                    // Stay in the same x (straight fall).
+                    p.x += 0;
+                } else {
+                    // Random small shift left/right,
+                    // giving the "stepping" sideways effect.
+                    if (Noise % 0.1 > 0.05) {
+                        p.x += 1;
+                    } else {
+                        p.x += -1;
+                    }
+                    // Reset gravity when sliding.
+                    p.g = 0;
+                }
+
+                /* --- vertical motion ---
+                 * Two modes of falling:
+                 * - If noise is high: accelerate downward
+                 *   (like a free fall when no stairs are in the way).
+                 * - If noise is low: descend slowly,
+                 *   like water crawling along the stair edge.
+                 */
+                if (Noise > 0.4) {
+                    p.g += 0.5; // acceleration
+                    p.y += p.g; // faster fall
+                } else {
+                    p.y += 0.5; // slow descent
+                }
+
+                // Finally, draw the particle at its position.
+                point(p.x, p.y);
+            }
+        }
+
+        function windowResized() {
+            resizeCanvas(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+</html>
