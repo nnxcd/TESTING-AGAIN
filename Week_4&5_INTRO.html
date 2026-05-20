@@ -16,11 +16,13 @@
 
         body {
             overflow: hidden;
+            
         }
 
         .w4-button,
         .w5-button,
         .hng-button {
+            
             position: fixed;
             z-index: 100;
             padding: 15px 25px;
@@ -28,20 +30,22 @@
 
         .w4-button {
             top: 20px;
-            left: 20px;
+            right: 20px;
         }
 
         .w5-button {
             top: 70px;
-            left: 20px;
+            right: 20px;
         }
 
         .hng-button {
             top: 120px;
-            left: 20px;
+            right: 20px;
         }
 
         button {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
             padding: 10px 20px;
             font-size: 16px;
             background-color: rgba(255, 255, 255, 0.9);
@@ -51,7 +55,7 @@
         }
 
         button:hover {
-            background-color: rgba(73, 223, 253, 0.8);
+            background-color: rgba(0, 255, 64, 0.8);
             color: white;
         }
 
@@ -75,121 +79,186 @@
         <div class="hng-button">
             <a href="W4&5_HNG.html">
                 <button>Hunted and gathered (W4-W5)</button>
-            </a>
         </div>
 
     </body>
-    <!-- sourced from https://openprocessing.org/@u583880/2904110 -->
+    <!-- credits to https://openprocessing.org/@jcponcemath/2830909 -->
     <script>
-        let particles = [];
-        let time = 0;
-        let colorPalette = ['#FFFFFF', '#FFFFFF', '#FFFFFF'];
+        
+        let codeLines = [];
+let fontSize = 22;
+let lineHeight = 30;
+let margin = 70;
 
-        function setup() {
-            createCanvas(window.innerWidth, window.innerHeight);
-        }
+let scrollSpeed = 35; // frames between new lines
+let frameCounter = 0;
+let nextY;
 
-        function draw() {
-            // Background with slight fading and blur,
-            // so trails remain visible and look like flowing water.
-            background(0, 20);
-            filter(BLUR);
-            stroke(255);
+// Typing state
+let typingSpeed = 1; // frames per character
+let typingCounter = 0;
+let currentSnippet = "";
+let currentIndex = 0;
+let isTyping = false;
 
-            /* ---- particle creation loop ----
-             * Instead of spawning just one particle per frame,
-             * we generate several at once (here 9), to simulate
-             * the "dense rainfall" effect.
-             */
-            let i = 9;
-            while (i > 0) {
-                i--;
+// Cursor
+let cursorBlinkSpeed = 10;
+let cursorVisible = true;
+let cursorCounter = 0;
+let cursorSize = 16;
 
-                // The particle index depends on time,
-                // so older particles get replaced cyclically.
-                let index = time % (width * 9);
+let funSnippets = [
+"Hi",
+"What's your name?",
+"My name is -... .. .-.. .-.. -.--",
+"You won't see me again after this",
+"My home will look different",
+"Please don't be shocked",
+"O(∩_∩)O",
+"<(• . • )>",
+"=.=",
+"(▀̿Ĺ̯▀̿ ̿)",
+"(￣o￣) . z Z"
+];
 
-                // x-position drifts horizontally over time
-                // (like raindrops entering at different stair positions).
-                let px = (time * 99) % width;
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textFont("monospace");
+  textSize(fontSize);
+  frameRate(60);
 
-                // Each particle starts at the top (y=0),
-                // with no vertical velocity yet.
-                let obj = {
-                    x: px,
-                    y: 0,
-                    g: 0, // vertical acceleration ("gravity")
-                    s: 2, // size of the droplet
-                    c: random(colorPalette)
-                };
+  nextY = height / 2;
+}
 
-                // Store in particles array
-                particles[index] = obj;
-                time = time + 1;
-            }
+function draw() {
+  background(0, 70);
 
-            /* ---- particle update & render loop ----
-             * This is where each particle is instructed how to "flow"
-             * down the stairs. Motion is guided by Perlin noise
-             * instead of fixed gravity, so the drops sometimes
-             * fall straight, sometimes hesitate and slide sideways,
-             * mimicking the way water splits and searches for channels.
-             */
-            for (let idx = 0; idx < particles.length; idx++) {
-                let p = particles[idx];
+  // Draw all lines
+  for (let line of codeLines) {
+    drawGlowingText(line.text, line.x, line.y);
+  }
 
-                // Slowly shrink the droplet as it moves down,
-                // like water dispersing into the surface.
-                p.s = p.s * 0.998;
-                strokeWeight(p.s);
-                stroke(p.c);
+  // Cursor blink logic
+  cursorCounter++;
+  if (cursorCounter >= cursorBlinkSpeed) {
+    cursorCounter = 0;
+    cursorVisible = !cursorVisible;
+  }
 
-                // Perlin noise is used as a "terrain map"
-                // that tells particles when to fall vs. when to slide.
-                let Noise = noise(p.x / width, p.y / 5, time / width);
+  // Start typing a new line after a pause
+  frameCounter++;
+  if (frameCounter >= scrollSpeed && !isTyping) {
+    frameCounter = 0;
+    startTyping();
+  }
 
-                /* --- horizontal motion ---
-                 * If noise is high, the drop sticks to its vertical path.
-                 * If noise is lower, we make the drop jitter sideways,
-                 * producing the staircase-like zig-zag motion.
-                 */
-                if (Noise > 0.4) {
-                    // Stay in the same x (straight fall).
-                    p.x += 0;
-                } else {
-                    // Random small shift left/right,
-                    // giving the "stepping" sideways effect.
-                    if (Noise % 0.1 > 0.05) {
-                        p.x += 1;
-                    } else {
-                        p.x += -1;
-                    }
-                    // Reset gravity when sliding.
-                    p.g = 0;
-                }
+  // Type characters
+  if (isTyping) {
+    typeCharacter();
+  }
 
-                /* --- vertical motion ---
-                 * Two modes of falling:
-                 * - If noise is high: accelerate downward
-                 *   (like a free fall when no stairs are in the way).
-                 * - If noise is low: descend slowly,
-                 *   like water crawling along the stair edge.
-                 */
-                if (Noise > 0.4) {
-                    p.g += 0.5; // acceleration
-                    p.y += p.g; // faster fall
-                } else {
-                    p.y += 0.5; // slow descent
-                }
+  // Draw cursor
+  if (cursorVisible && codeLines.length > 0) {
+    drawCursor();
+  }
+}
 
-                // Finally, draw the particle at its position.
-                point(p.x, p.y);
-            }
-        }
+// -------------------------
+// Typing control
+// -------------------------
+function startTyping() {
+  currentSnippet = random(funSnippets);
+  currentIndex = 0;
+  isTyping = true;
 
-        function windowResized() {
-            resizeCanvas(window.innerWidth, window.innerHeight);
-        }
+  codeLines.push({
+    text: "",
+    x: margin,
+    y: nextY
+  });
+}
+
+function typeCharacter() {
+  typingCounter++;
+  if (typingCounter < typingSpeed) return;
+  typingCounter = 0;
+
+  let currentLine = codeLines[codeLines.length - 1];
+  currentLine.text += currentSnippet[currentIndex];
+  currentIndex++;
+
+  if (currentIndex >= currentSnippet.length) {
+    isTyping = false;
+    nextY += lineHeight;
+    handleScroll();
+  }
+}
+
+// -------------------------
+// Scrolling logic
+// -------------------------
+function handleScroll() {
+  if (nextY + lineHeight > height - margin) {
+    for (let line of codeLines) {
+      line.y -= lineHeight;
+    }
+    nextY -= lineHeight;
+  }
+
+  codeLines = codeLines.filter(
+    line => line.y > margin - lineHeight
+  );
+}
+
+// -------------------------
+// Cursor
+// -------------------------
+function drawCursor() {
+  let lastLine = codeLines[codeLines.length - 1];
+  let cursorX = lastLine.x + textWidth(lastLine.text) + 6;
+  let cursorY = lastLine.y - fontSize + 4;
+
+  drawingContext.shadowBlur = 6;
+  drawingContext.shadowColor = color(0, 255, 70);
+
+  noStroke();
+  fill(0, 255, 70);
+  rect(cursorX, cursorY, cursorSize, cursorSize);
+
+  drawingContext.shadowBlur = 0;
+}
+
+// -------------------------
+// Glowing text
+// -------------------------
+function drawGlowingText(txt, x, y) {
+  for (let i = 4; i > 0; i--) {
+    fill(0, 255, 70, 40 * i);
+    text(txt, x, y);
+  }
+  fill(0, 255, 70);
+  text(txt, x, y);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+
+  // Clear all previous lines
+  codeLines = [];
+
+  // Reset typing state
+  isTyping = false;
+  currentSnippet = "";
+  currentIndex = 0;
+  typingCounter = 0;
+  frameCounter = 0;
+
+  // Reset cursor
+  cursorCounter = 0;
+  cursorVisible = true;
+
+  // Reset starting position
+  nextY = height / 2;
+}
     </script>
-</body>
 </html>
