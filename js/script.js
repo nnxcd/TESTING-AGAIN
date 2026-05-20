@@ -6,6 +6,15 @@ for (var i = 0; i < draggableElements.length; i++) {
   dragElement(draggableElements[i]);
 }
 
+// Make specific hunt-n-gather divs draggable by ID
+var hngIds = ['gen2-hng', 'colorful-ball', 'masks-hng', 'ghost-hng'];
+hngIds.forEach(function(id) {
+  var element = document.getElementById(id);
+  if (element) {
+    dragElement(element);
+  }
+});
+
 function dragElement(elmnt) {
   var pos1 = 0,
     pos2 = 0,

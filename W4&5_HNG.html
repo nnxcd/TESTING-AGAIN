@@ -5,53 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 5</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="js/script.js" defer></script>
     <style>
+        @font-face {
+            font-family: 'hankengrotesk';
+            src: url(Fonts/HankenGrotesk-Regular.ttf) format('truetype');
+            font-family: 'caslon-antique';
+            src: url(Fonts/CaslonAntique-Bold.ttf) format('truetype');
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(Images-Ass2/gallery-wall.webp);
+            background-size: cover;
+            font-family: caslon-antique, serif;
+            /*backdrop-filter: blur(5px); */
+        }
+    
         .content-windows{
             position:absolute;
             z-index:2;
+            cursor: move;
+            user-select: none;
         }
 
         .content-windows iframe{
-            width:40vw;
-            height:35vh;
+            width: 600px;;
+            height:700px;
             border:none;
+            pointer-events: auto;
         }
+
+        #colorful-ball img{
+            
+            width:500px;
+            height:400px;
+            cursor:move;
+        }
+
+        #gen2-hng iframe{
+            width: 400px;
+            height: 300px;
+        }
+
+        .hng-content-windows {
+            position: absolute;
+            cursor: move;
+            user-select: none;
+            top: 0;
+            left: 0;
+            background: white;
+            padding: 10px;
+            z-index: 10;
+        }
+        #gen2-hng{
+            top: 40px;
+            left: 50px;
+            background-color: burlywood;
+        }
+
+        #colorful-ball{
+            top: 120px;
+            left: 750px;
+        }
+
+        #masks-hng{
+            top: 400px;
+            left: 100px;
+        }
+
+        #ghost-hng{
+            top: 450px;
+            left: 850px;
+            
+        }
+        #ghost-hng iframe{
+            width: 500px;
+            height: 500px;
+        }
+
+        
+
+        /* MODAL */
+
+        #modal {
+            font-family: caslon-antique, serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #modal h2{
+            font-size: 2.5em;
+            margin-top: 0.5rem;
+        }
+
+        #modal p{
+                margin-top: 1rem;
+                font-size: 1.2em;
+        }
+
+        .modal__window {
+            position: relative;
+            background-color: rgb(134, 107, 56);
+            border: 10px; 
+            border-style: solid;
+            border-color: rgb(31, 16, 3);
+            padding: 4em 2em;
+            max-width: 500px;
+            width: 80%;
+            text-align: center;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 2em;
+            font-family: monospace;
+        }
+
+        #close-modal:checked + #modal{
+            display:none;
+        }
+           
 
         </style>
 </head>
 <body>
+    <!-- pop-up modal-->
+     <input type="checkbox" id="close-modal" hidden>
 
-<div class="hng-content-windows" id="masks-hng"> 
-        <iframe title="vimeo-player" src="https://player.vimeo.com/video/1004161079?h=bbe40c2f87" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>
-        <!--
-        <iframe
-                src="https://masks.constraint.systems/"
-                allow="camera;microphone">
-            </iframe>
-            -->
-        <p> hunt-n-gather #1 what does a tree sound like? </p>
-        <!-- expand research for this -->
+    <div id="modal">
+        <div class="modal__window">
+
+            <label for="close-modal" class="modal__close">✕</label>
+
+            <h2 style="color: rgb(243, 195, 137);">Welcome to my private gallery! </h2>
+
+            <p style="color: rgb(243, 195, 137);">
+                Take a look around, u might have to move things to see properly though.
+            </p>
+
+        </div>
     </div>
     
-    <div class="hng-content-windows" id="ghost-hng"> 
-        <iframe
-            src="https://openprocessing.org/sketch/2920789/embed"
-            style="width:100%; height:100%; border:none;">
-        </iframe>
-        <p> hunt-n-gather #2 mirror mirror webcam</p>
-          <iframe
-                src="https://masks.constraint.systems/"
+
+
+
+    <div class="hng-content-windows" id="gen2-hng"> 
+            <iframe title="vimeo-player" src="https://player.vimeo.com/video/1004161079?h=bbe40c2f87" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>
+            
+            <h3> Hunt-n-Gather #1 Generate 3D art </h3>
+            <p> What does a tree sound like?
+                <br>I really enjoyed this one, it was so fun to visualize 
+                <br>the different sounds and how they changed with  different objects. 
+                <br>The sound waves were really cool. 
+                <br>Everything kinda gave off a TouchDesigner vibe too.</p>
+            <!-- expand research for this -->
+        </div>
+        <div class="hng-content-windows" id="colorful-ball">
+            <!--source from https://openprocessing.org/sketch/2920789/embed-->
+            <img src="Images-Ass2/3d-gen-art.png" alt="picture of a yellow 3d ball with different colours on it">
+            <h4> Hunt-n-Gather #2 Generative-3D art </h4>
+            <p> Floooating baaaalll~~
+                <br>Cooolourful baaaalll~~~
+                <br> this is a screenshot from the original work, with colors
+                <br>falling from the top around the sphere.
+            </p>
+        </div>
+        
+        <div class="hng-content-windows" id="masks-hng"> 
+            <p> hunt-n-gather #1 mirror mirror webcam
+                <br> the viewer becomes the artwork! 
+            </p>
+            <iframe
+                    src="https://masks.constraint.systems/"
+                    allow="camera;microphone">
+                </iframe>
+                
+            
+        </div>
+        
+        <div class="hng-content-windows" id="ghost-hng"> 
+            <p> hunt-n-gather #2 mirror mirror webcam
+                <br> one of our more interactive pieces, 
+                <br>have a play around with the buttons
+            </p>
+            <iframe
+                src="https://ghost.constraint.systems/"
                 allow="camera;microphone">
             </iframe>
             
-        <p> hunt-n-gather #1 mirror mirror webcam</p>
-    </div>
+        </div>
+        </div>
+</body>
     
-    <div class="hng-content-windows" id="ghost-hng"> 
-        <iframe
-            src="https://ghost.constraint.systems/"
-            allow="camera;microphone">
-        </iframe>
-        <p> hunt-n-gather #2 mirror mirror webcam</p>
-    </div>
-    </div>
+</html>
