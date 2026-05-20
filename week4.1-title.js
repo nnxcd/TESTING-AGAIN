@@ -90,3 +90,22 @@
             }
         }
         new p5(sketch7, 'sketch7');
+
+        //sketch 4 copy in 
+        const sketch4 = (p) => {
+            p.setup = function() {
+                p.createCanvas(p.windowWidth / 4, p.windowHeight / 2);
+                p.background(255, 249, 54);
+                p.rectMode(p.CENTER);
+                p.textSize(20);
+            }
+            
+            p.draw = function() {
+                p.background(200, 200, 30, 16);
+                p.circle(p.mouseX, p.mouseY, 170);
+                p.fill("pink");
+                p.text("BOOM", p.mouseX, p.mouseY);
+                p.line(p.width / 2, p.height, p.mouseX, p.mouseY);
+            }
+        }
+        new p5(sketch4, 'sketch4');

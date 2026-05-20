@@ -80,7 +80,18 @@
         <div class="grid-item"><div class="sketch-container" id="sketch1"></div></div>
         <div class="grid-item"><div class="sketch-container" id="sketch2"></div></div>
         <div class="grid-item"><div class="sketch-container" id="sketch3"></div></div>
-        <div class="grid-item"><div class="sketch-container" id="sketch4"></div></div>
+        <div class="grid-item">
+            <div class="sketch-container" id="sketch4">
+                <br>
+                <br>
+                <p> this was my first time using p5.js, however I've heard a lot about it online.
+                    I started seeing artists using it here and there on Red Note (Chinese Instagram) and was so enamored by it.
+                    I didn't know that generative art could be like this, and that it wasn't just AI slop. 
+                </p>
+                <!-- maybe show screenshots of the page-->
+
+            </div>
+        </div>
         <div class="grid-item"><div class="sketch-container" id="sketch5"></div></div>
         <div class="grid-item"><div class="sketch-container" id="sketch6"></div></div>
         <div class="grid-item">
@@ -154,23 +165,7 @@
         new p5(sketch3, 'sketch3');
 
         // Sketch 4 - Source 4
-        const sketch4 = (p) => {
-            p.setup = function() {
-                p.createCanvas(p.windowWidth / 4, p.windowHeight / 2);
-                p.background(255, 249, 54);
-                p.rectMode(p.CENTER);
-                p.textSize(20);
-            }
-            
-            p.draw = function() {
-                p.background(200, 200, 30, 16);
-                p.circle(p.mouseX, p.mouseY, 170);
-                p.fill("pink");
-                p.text("BOOM", p.mouseX, p.mouseY);
-                p.line(p.width / 2, p.height, p.mouseX, p.mouseY);
-            }
-        }
-        new p5(sketch4, 'sketch4');
+        // IN HERE
 
         // Sketch 5 - Source 5
         const sketch5 = (p) => {
