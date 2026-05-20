@@ -20,13 +20,13 @@
             font-size: large;
             
             background: wheat;
-            background-image: radial-gradient(rgb(0, 242, 255) 20%, transparent 0), /* polka dots */
-                                linear-gradient(to right, white , white); /* your gradient */
+            background-image: radial-gradient(rgb(0, 242, 255) 70%, transparent 0), /* polka dots */
+                                linear-gradient(to right, rgb(0, 242, 255) , rgb(22, 0, 63)); /* your gradient */
 
-            background-size: 500px 500px, /* polka dots */
+            background-size: 200px 200px, /* polka dots */
                             100% 100%; /* your gradient */
 
-            background-position: 0 0, 35px 35px;
+            background-position: 0 0, 100px 100px;
             /* Without a 3rd set of values, the 3rd gradient
                 will default to the first set of values (0 0) */ 
         }
@@ -39,7 +39,6 @@
             gap: 0.5rem;
             margin: 0;
             padding: 0.25rem 0.5rem;
-            
             border-radius: 6px;
             z-index: 100;
         }
@@ -78,8 +77,8 @@
         }
 
         h1:hover{
-            background-color: rgb(0, 255, 225);
-            color: rgb(4, 54, 45);
+            background-color: rgb(255, 0, 217);
+            color: rgb(255, 255, 255);
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -382,7 +381,7 @@
 
         <div class="home-button">
             
-            <p> click on me to go home!</p>
+            <p> Home!</p>
             <a href="index.html">
                 <img src= "https://gifypet.neocities.org/pet/pets/robot.gif" alt="Robot Home button">
             </a>

@@ -14,7 +14,7 @@
 
         body{
             background:rgb(245,245,245);
-            overflow:hidden;
+            
             font-family:Arial, Helvetica, sans-serif;
         }
         .background-content{
@@ -26,6 +26,11 @@
             color:black;
         }
 
+        .background-content h3{
+            transform:scaleX(0.5);
+
+        }
+
         .content-windows{
             position:absolute;
             z-index:2;
@@ -33,8 +38,19 @@
 
         .content-windows iframe{
             width:40vw;
-            height:35vh;
+            height:60vh;
             border:none;
+            z-index:10;
+        }
+
+        .content-windows h3{
+            color:rgb(141, 41, 255);
+            font-size:2vw;
+            line-height:0.50;
+            letter-spacing:-3px;
+            font-weight:bold;
+            transform:scaleX(1.2);
+            padding-left: 20px;
         }
 
         /* Yoko Ono window position */
@@ -42,29 +58,72 @@
             top:8vh;
             right:-5vw;
             z-index:10;
+           
+        }
+
+        #yoko-ono h4{
+            line-height:1.5;
+            transform:scaleX(1.4);
+            color:rgb(102, 201, 4);
         }
 
         /* Kusama window position */
         #kusama{
-            bottom:5vh;
-            left:2vw;
+            position: absolute;
+            bottom: -30vh;
+            left: 2vw;
+            z-index: 2;
+        }
+
+        
+        #kusama h4{
+            position:relative;
+            line-height: 1.5;
+            transform:scaleX(1.4);
+            color:rgb(102, 201, 4);
+            left: 100px;
         }
 
         #slave-algo{
-            top:60vh;
-            left:76vw;
+            top:70vh;
+            left:70vw;
             width:30vw;
             z-index:10;
             
         }
+        
 
         #slave-algo h2{
+            top:70vh;
+            left:70vw;
+            width:30vw;
+            z-index:10;
             font-size:2vw;
-            line-height:0.75;
+            line-height:0.50;
             letter-spacing:-3px;
             font-weight:bold;
+            transform:scaleX(1.2);
+            padding-bottom: 20px;
+            
+        }
+
+        #slave-algo p{
+            font-size:2vw;
+            line-height:0.75;
+            letter-spacing:1px;
+            font-weight:bold;
             transform:scaleX(0.5);
-            padding-bottom: 40px;
+            padding-bottom: 5px;
+            
+        }
+
+        #slave-algo li{
+            font-size:2vw;
+            line-height:0.75;
+            letter-spacing:1px;
+            font-weight:bold;
+            transform:scaleX(0.5);
+            padding-bottom: 5px;
             
         }
 
@@ -72,7 +131,7 @@
 
 
         h1{
-            font-size:10vw;
+            font-size:15vw;
             line-height:0.75;
             letter-spacing:-10px;
             text-transform:uppercase;
@@ -80,30 +139,19 @@
             margin-bottom:2vh;
         }
 
-        p{
-            font-size:2vw;
-            line-height:0.82;
-            letter-spacing:-1.8px;
-            font-weight:bold;
-            width:20vw;
-            transform:scaleX(0.7);
-            margin-bottom: 1vh;
-            margin-left: -5vw;
-            color: rgb(24, 212, 27);
-        }
+        
 
         p.graphics-credit{
-            left: 0.5vw;
+            position: absolute;
+            top: 1px;
+            left: 3px;
             font-size:1vw;
-            line-height:0.82;
-            letter-spacing:-1.8px;
+            line-height: 0.82;
+            letter-spacing: -1.3px;
             font-weight:lighter;
-            margin-top: -23vh;
-            margin-left:4vw;
             color:black;
             width:32vw;
-            transform:scaleX(0.96);
-            
+            transform:scaleX(1.2);
         }
 
         
@@ -112,9 +160,7 @@
             height: 100vh;
         }
 
-        .white-word {
-            color: white;
-        }
+        
 
         .hng-content-windows{
             position: absolute;
@@ -123,45 +169,33 @@
             top:20vh;
             left:50%;
             transform: translateX(-50%);
-            z-index: 30;
+            z-index: 10;
         }
 
         .hng-content-windows iframe{
             width:100%;
             height:100%;
             border:none;
+            z-index: 30;
         }
 
         .hng-content-windows p{
             color:rgb(136, 0, 255);
         }
 
-        #masks-hng{
-            top: 30vh;
-            left: 20%;
-            z-index: 10;
-            max-width: 600px;
-            max-height: 300px;
-            -webkit-overflow-scrolling: touch;
-            touch-action: auto;
-        }
-
-        #ghost-hng{
-            top: 70vh;
-            left: 60%;
-            max-width: 600px;
-            max-height: 300px;
-            z-index: 10;
-        }
+        
     </style>
 </head>
 <body>
     <!-- add more documentation later-->
     <div class="content-windows" id="yoko-ono">
+        <h3>Yoko Ono-like work. </h3>
+         <h4> is a reflection of my thoughts rn. do i know what im doing?</h4>   
         <iframe
             src="p5js/Yoko_Ono_Week_5/"
             title="Yoko Ono">
         </iframe>
+        
     </div>
     
     <div class="content-windows" id="kusama">
@@ -169,44 +203,40 @@
             src="p5js/Kusama_Week_5/"
             title="Kusama">
         </iframe>
+        <h3>Kusama-like work.</h3>
+        <h4>click on a key within, and time stops</h4>
     </div>
 
     <div class="content-windows" id="slave-algo">
-        <h2>#Slave to the <span class="white-word">algorithm</span></h2>
+        <h2>#Slave to the algorithm</h2>
         <p>Documenting what I do in a day, letting chance take over</p>
-        <ul>
+        <ul style="list-style-type: none;">
             <li>Should I have caffeine or no? Heads → Yes.</li>
             <li>Should I have matcha or try something new? Tails → Try something new.</li>
             <li>Should I study at home or school? Heads → Study alone and lock in.</li>
             <li>Walk home or tram home? Heads → Walk home.</li>
             <li>Asian food or western food? Tails → Tomato pasta.</li>
+            <br>
+            <br>
+            <li style="color:rgb(16, 233, 186);"> ← click and drag to draw </li>
         </ul>
         
     </div>
 
-    <div class="hng-content-windows" id="masks-hng"> 
-        <iframe
-                src="https://masks.constraint.systems/"
-                allow="camera;microphone">
-            </iframe>
-        <p> hunt-n-gather #1 mirror mirror webcam</p>
-    </div>
+    <!-- Pixel Drawing Tool -->
     
-    <div class="hng-content-windows" id="ghost-hng"> 
-        <iframe
-            src="https://ghost.constraint.systems/"
-            allow="camera;microphone">
-        </iframe>
-        <p> hunt-n-gather #2 mirror mirror webcam</p>
-    </div>
+    <div id="pixel-drawer-container" style="position: absolute; top: 80vh; right: 20vw; width: 700px; height: 400px; z-index: -5;"></div>
 
-    <!-- Background graphics by Tessie Gresley -->
+    <!-- add tomatoes in the bottom -->
+
+
+    
     <div class="background-content">
     <h1>Week 5 </h1>
+    <h3> scroll and draw if ur bored :3 </h3>
     <p class="graphics-credit"> Graphics is thanks to Tessie Gresley.</p>
-    <div class="windows-frame">
-    </div>
-
+    
+<!-- Background graphics by Tessie Gresley -->
     <script>
         let gridSize = 30;
         let starGridSize = 20;
@@ -282,7 +312,7 @@
             offsetY = height / 2 - (flowerPattern.length * gridSize) / 2;
 
             starOffsetX = width - starPattern[0].length * starGridSize - 40;
-            starOffsetY = height - starPattern.length * starGridSize - 400;
+            starOffsetY = height - starPattern.length * starGridSize - 20;
 
             heartOffsetX = 80;
             heartOffsetY = 190;
@@ -435,6 +465,44 @@
         function windowResized() {
             resizeCanvas(windowWidth, windowHeight);
         }
+
+        // Pixel Drawing Tool from https://editor.p5js.org/m4ttbit/sketches/ywqtUdQC1
+        const pixelDrawer = (p) => {
+            let grid = 32;
+
+            p.setup = function() {
+                p.createCanvas(700, 400);
+                p.background(240);
+            }
+
+            p.draw = function() {
+                if (p.mouseIsPressed && p.mouseX > 0 && p.mouseX < p.width && p.mouseY > 0 && p.mouseY < p.height) {
+                    let x = snap(p.mouseX);
+                    let y = snap(p.mouseY);
+                    p.noStroke();
+                    p.fill(73, 223, 253);
+                    p.square(x, y, grid);
+                }
+                drawGrid();
+            }
+
+            function drawGrid() {
+                let l = 0;
+                p.strokeWeight(1);
+                p.stroke(200);
+                while (l < p.width || l < p.height) {
+                    p.line(0, l, p.width, l);
+                    p.line(l, 0, l, p.height);
+                    l += grid;
+                }
+            }
+
+            function snap(pos) {
+                let cell = Math.round((pos - grid / 2) / grid);
+                return cell * grid;
+            }
+        }
+        new p5(pixelDrawer, 'pixel-drawer-container');
     </script>
 </body>
 </html>
